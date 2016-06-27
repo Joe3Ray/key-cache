@@ -4,22 +4,11 @@
  * @email fe.xiaowu@gmail.com
  */
 
-import {statSync, writeFileSync, readFileSync, unlinkSync} from 'fs';
+import {writeFileSync, readFileSync, unlinkSync} from 'fs';
 import {mkdirsSync, emptyDirSync} from 'fs-extra';
 import {resolve} from 'path';
 import {createHash} from 'crypto';
-
-let fileExists = (filePath) => {
-    let isExists;
-    try {
-        let stat = statSync(filePath);
-        isExists = stat.isFile();
-    }
-    catch (e) {
-        isExists = false;
-    }
-    return isExists;
-};
+import existsSync from './existsSync';
 
 export default class KeyCache {
     static options = {
@@ -141,7 +130,7 @@ export default class KeyCache {
         let filepath = this._getFilePath(key);
 
         // 如果文件不存在
-        if (!fileExists(filepath)) {
+        if (!existsSync(filepath)) {
             return null;
         }
 
@@ -187,7 +176,7 @@ export default class KeyCache {
         let filepath = this._getFilePath(key);
 
         // 如果文件不存在
-        if (!fileExists(filepath)) {
+        if (!existsSync(filepath)) {
             return this;
         }
 

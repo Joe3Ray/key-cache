@@ -5,9 +5,10 @@
  */
 
 import should from 'should';
-import {existsSync, readFileSync, writeFileSync, readdirSync} from 'fs';
+import {readFileSync, writeFileSync, readdirSync} from 'fs';
 import {removeSync, mkdirpSync} from 'fs-extra';
 import {resolve, dirname} from 'path';
+import existsSync from '../src/existsSync';
 
 import KeyCache from '../src/main';
 import types from './types';
